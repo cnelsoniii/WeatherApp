@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Icons\" />
+    <Folder Include="Fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Icons\clear.png" />
+    <None Remove="Icons\clearnight.png" />
+    <None Remove="Icons\cloudy.png" />
+    <None Remove="Icons\partlyclearday.png" />
+    <None Remove="Icons\partlycloudy.png" />
+    <None Remove="Icons\partlycloudynight.png" />
+    <None Remove="Icons\rain.png" />
+    <None Remove="Icons\rainsnow.png" />
+    <None Remove="Icons\rainthunder.png" />
+    <None Remove="Icons\snow.png" />
+    <None Remove="Icons\warning.png" />
+    <None Remove="test.png" />
+    <None Remove="Fonts\College Halo.ttf" />
+    <None Remove="Fonts\carbono_pw.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\clear.png" />
+    <EmbeddedResource Include="Icons\clearnight.png" />
+    <EmbeddedResource Include="Icons\cloudy.png" />
+    <EmbeddedResource Include="Icons\partlyclearday.png" />
+    <EmbeddedResource Include="Icons\partlycloudy.png" />
+    <EmbeddedResource Include="Icons\partlycloudynight.png" />
+    <EmbeddedResource Include="Icons\rain.png" />
+    <EmbeddedResource Include="Icons\rainsnow.png" />
+    <EmbeddedResource Include="Icons\rainthunder.png" />
+    <EmbeddedResource Include="Icons\snow.png" />
+    <EmbeddedResource Include="Icons\warning.png" />
+    <EmbeddedResource Include="test.png" />
+    <EmbeddedResource Include="Fonts\College Halo.ttf" />
+    <EmbeddedResource Include="Fonts\carbono_pw.ttf" />
+  </ItemGroup>
+</Project>
