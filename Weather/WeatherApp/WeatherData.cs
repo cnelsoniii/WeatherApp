@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 
@@ -13,7 +14,7 @@ namespace WeatherApp
         public Coord Coord { get; set; }
 
         [JsonProperty("weather")]
-        public Weather[] Weather { get; set; }
+        public List<Weather> Weather { get; set; }
 
         [JsonProperty("base")]
         public string Base { get; set; }
@@ -42,21 +43,12 @@ namespace WeatherApp
         [JsonProperty("cod")]
         public long Cod { get; set; }
 
-        public Weather LocationWeather { get => Weather[0]; set => Weather[0] = value; }
+        [JsonIgnore]
+        public string DisplayTemp => $"Temp: {Main?.Temperature ?? 0}° {Weather?[0]?.Visibility ?? string.Empty}";
+
+        //public Weather LocationWeather { get => Weather[0]; set => Weather[0] = value; }
 
         public ImageSource WeatherIcon { get; set; }
-        //public string WeatherIcon { get; set; }
-
-        //public string WeatherIcon
-        //{
-        //    get
-        //    {
-        //        return $"http://openweathermap.org/img/w/{Weather[0].Icon}.png";
-        //    }
-        //}
-
-        //public string WeatherIcon { get => "http://openweathermap.org/img/w/{Weather[0].Icon}.png"; }
-
     }
 
 
@@ -145,5 +137,35 @@ namespace WeatherApp
 
         [JsonProperty("deg")]
         public long Deg { get; set; }
+    }
+
+    public class WeatherForecastRoot
+    {
+        [JsonProperty("city")]
+        public City City { get; set; }
+        [JsonProperty("cod")]
+        public string Vod { get; set; }
+        [JsonProperty("message")]
+        public double Message { get; set; }
+        [JsonProperty("cnt")]
+        public int Cnt { get; set; }
+        [JsonProperty("list")]
+        public List<WeatherData> Items { get; set; }
+    }
+
+    public class City
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("coord")]
+        public Coord Coord { get; set; }
+        [JsonProperty("country")]
+        public string Country { get; set; }
+        [JsonProperty("population")]
+        public int Population { get; set; }
+        [JsonProperty("sys")]
+        public Sys Sys { get; set; }
     }
 }

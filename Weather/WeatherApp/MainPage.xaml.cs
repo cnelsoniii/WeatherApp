@@ -17,10 +17,10 @@ namespace WeatherApp
         {
             if (!string.IsNullOrWhiteSpace(_cityEntry.Text))
             {
-                WeatherData weatherData = await _restService.GetWeatherData(GenerateRequestUri(Constants.OpenWeatherMapEndpoint));
+                WeatherForecastRoot weatherData = await _restService.GetWeatherData(GenerateRequestUri(Constants.OpenWeatherMapEndpoint));
                 BindingContext = weatherData;
-                string weather = weatherData.LocationWeather.Visibility;
-                weatherData.WeatherIcon = WeatherDisplayIcon(weather);
+                //string weather = weatherData.LocationWeather.Visibility;
+                //weatherData.WeatherIcon = WeatherDisplayIcon(weather);
             }
         }
 

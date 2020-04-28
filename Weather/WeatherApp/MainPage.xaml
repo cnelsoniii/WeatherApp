@@ -83,16 +83,16 @@
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                     <Image Source="{local:ImageResource WeatherApp.test.png}" Rotation="15" HeightRequest="75" WidthRequest="75"/>
-                    <Label Text="{Binding Main.TemperatureRounded, StringFormat='{0}°'}"
+                    <Label Text="{Binding DisplayTemp, StringFormat='{0}°'}"
                            FontFamily="CarbonoFont" FontSize="64" TextColor="Black"  BackgroundColor="White" Rotation="-15" HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
                 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Label Text="{Binding Main.TempMaxRounded, StringFormat='{0}°'}"
+                    <Label Text="{Binding Items[0].Main.TempMaxRounded, StringFormat='{0}°'}"
                            Style="{StaticResource labelResultStyle}"/>
-                    <Label Text="{Binding Main.TempMinRounded, StringFormat='/ {0}° Feels like'}"
+                    <Label Text="{Binding Items[0].Main.TempMinRounded, StringFormat='/ {0}° Feels like'}"
                            Style="{StaticResource labelResultStyle}"/>
-                    <Label Text="{Binding Main.FeelsLikeRounded, StringFormat='{0}°'}"
+                    <Label Text="{Binding Items[0].Main.FeelsLikeRounded, StringFormat='{0}°'}"
                            Style="{StaticResource labelResultStyle}"/>
                 </StackLayout>
 
