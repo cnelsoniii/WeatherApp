@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{1DB00857-48CB-44C6-9149-3A420D86861B}|Default">
   <MonoDevelop.Ide.ItemProperties.WeatherApp.Android AndroidDesignerPreferredTheme="Theme.AppCompat.Light.NoActionBar" PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Weather/WeatherApp/RestService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Weather/WeatherApp/WeatherData.cs">
     <Files>
-      <File FileName="Weather/WeatherApp/WeatherData.cs" Line="47" Column="96" />
-      <File FileName="Weather/WeatherApp/Constants.cs" Line="5" Column="107" />
-      <File FileName="Weather/WeatherApp/MainPage.xaml.cs" Line="20" Column="76" />
-      <File FileName="Weather/WeatherApp/MainPage.xaml" Line="86" Column="54" />
-      <File FileName="Weather/WeatherApp/RestService.cs" Line="18" Column="40" />
+      <File FileName="Weather/WeatherApp/WeatherData.cs" Line="94" Column="29" />
+      <File FileName="Weather/WeatherApp/Constants.cs" Line="6" Column="106" />
+      <File FileName="Weather/WeatherApp/MainPage.xaml.cs" Line="36" Column="66" />
+      <File FileName="Weather/WeatherApp/MainPage.xaml" Line="117" Column="67" />
+      <File FileName="Weather/WeatherApp/RestService.cs" Line="44" Column="61" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,7 +14,7 @@
           <Node name="WeatherApp" expanded="True">
             <Node name="WeatherApp" expanded="True">
               <Node name="MainPage.xaml" expanded="True" />
-              <Node name="RestService.cs" selected="True" />
+              <Node name="WeatherData.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -25,7 +25,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/corneliusnelson/Projects/WeatherApp/Weather/WeatherApp/MainPage.xaml.cs" relfile="Weather/WeatherApp/MainPage.xaml.cs" line="21" column="1" />
+      <Breakpoint enabled="false" file="/Users/corneliusnelson/Projects/WeatherApp/Weather/WeatherApp/MainPage.xaml.cs" relfile="Weather/WeatherApp/MainPage.xaml.cs" line="27" column="1" />
+      <Breakpoint file="/Users/corneliusnelson/Projects/WeatherApp/Weather/WeatherApp/MainPage.xaml.cs" relfile="Weather/WeatherApp/MainPage.xaml.cs" line="39" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

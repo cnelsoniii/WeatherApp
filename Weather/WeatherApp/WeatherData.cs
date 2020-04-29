@@ -91,6 +91,7 @@ namespace WeatherApp
         public int TempMinRounded { get => Convert.ToInt32(TempMin); }
         public int TempMaxRounded { get => Convert.ToInt32(TempMax); }
         public int FeelsLikeRounded { get => Convert.ToInt32(FeelsLike); }
+        public List<string> ForecastTimeHours { get; set; }
 
     }
 
