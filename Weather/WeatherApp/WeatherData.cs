@@ -88,10 +88,11 @@ namespace WeatherApp
         public double TempMax { get; set; }
 
         public int TemperatureRounded { get => Convert.ToInt32(Temperature); }
-        public int TempMinRounded { get => Convert.ToInt32(TempMin); }
-        public int TempMaxRounded { get => Convert.ToInt32(TempMax); }
+        public int TempMinRounded { get; set; }
+        public int TempMaxRounded { get; set; }
         public int FeelsLikeRounded { get => Convert.ToInt32(FeelsLike); }
         public List<string> ForecastTimeHours { get; set; }
+        public DateTime DateAndTime { get; set; }
 
     }
 

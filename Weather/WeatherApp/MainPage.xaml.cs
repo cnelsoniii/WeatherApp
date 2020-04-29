@@ -20,6 +20,11 @@ namespace WeatherApp
             {
                 WeatherForecastRoot weatherData = await _restService.GetWeatherData(GenerateRequestUri(Constants.OpenWeatherMapEndpoint));
                 weatherData.Items[0].Main.ForecastTimeHours = ForecastTimeInHours();
+                var dailyTemp = GetDailyTemperatures(weatherData);
+                weatherData.Items[0].Main.TempMinRounded = GetMinDailyTemperature(dailyTemp);
+                weatherData.Items[0].Main.TempMaxRounded = GetMaxDailyTemperature(dailyTemp);
+                weatherData = SetDateAndTime(weatherData);
+
                 BindingContext = weatherData;
                 string TestTemp = weatherData.Items[0].Main.TemperatureRounded.ToString();
 
@@ -40,6 +45,43 @@ namespace WeatherApp
 
             return result;
         }
+
+        WeatherForecastRoot SetDateAndTime(WeatherForecastRoot weatherData)
+        {
+            var result = weatherData;
+            var dateTime = DateTime.Now;
+
+            for (int i = 0; i < weatherData.Items.Count; i++)
+            {
+                result.Items[i].Main.DateAndTime = dateTime;
+                dateTime = dateTime.AddHours(3);
+            }
+            return result;
+        }
+
+        List<int> GetDailyTemperatures(WeatherForecastRoot weatherData)
+        {
+            var result = new List<int>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                result.Add(weatherData.Items[i].Main.TemperatureRounded);
+            }
+            result.Sort();
+
+            return result;
+        }
+
+        int GetMinDailyTemperature(List<int> temperatureList)
+        {
+            return temperatureList[0];
+        }
+
+        int GetMaxDailyTemperature(List<int> temperatureList)
+        {
+            return temperatureList[7];
+        }
+
         string GenerateRequestUri(string endpoint)
         {
             string requestUri = endpoint;
