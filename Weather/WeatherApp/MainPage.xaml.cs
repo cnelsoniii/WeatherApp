@@ -20,10 +20,8 @@ namespace WeatherApp
             {
                 WeatherForecastRoot weatherData = await _restService.GetWeatherData(GenerateRequestUri(Constants.OpenWeatherMapEndpoint));
                 weatherData.Items[0].Main.ForecastTimeHours = ForecastTimeInHours();
-                var dailyTemp = GetDailyTemperatures(weatherData);
-                weatherData.Items[0].Main.TempMinRounded = GetMinDailyTemperature(dailyTemp);
-                weatherData.Items[0].Main.TempMaxRounded = GetMaxDailyTemperature(dailyTemp);
                 weatherData = SetDateAndTime(weatherData);
+                weatherData = GroupWeatherDataByDate(weatherData);
 
                 BindingContext = weatherData;
                 string TestTemp = weatherData.Items[0].Main.TemperatureRounded.ToString();
@@ -31,6 +29,45 @@ namespace WeatherApp
                 //string weather = weatherData.LocationWeather.Visibility;
                 //weatherData.WeatherIcon = WeatherDisplayIcon(weather);
             }
+        }
+
+        WeatherForecastRoot GroupWeatherDataByDate(WeatherForecastRoot weatherData)
+        {
+            var tempWeatherData = weatherData;
+            var dailyForecastTemperatures = new List<int>();
+            var dateTime = weatherData.Items[0].ForecastTime.ToString("MMMM dd");
+            var index = 0;
+
+            for(int i = 0; i < tempWeatherData.Items.Count; i++)
+            {
+                if (weatherData.Items[i].ForecastTime.ToString("MMMM dd") == dateTime)
+                {
+                    dailyForecastTemperatures.Add(weatherData.Items[i].Main.TemperatureRounded);
+                }
+                else
+                {
+                    dailyForecastTemperatures.Sort();
+                    weatherData = AddDailyForecastsToWeatherForecastRoot(dailyForecastTemperatures, tempWeatherData, index, i);
+                    tempWeatherData = weatherData;
+                    index = i;
+                    dateTime = tempWeatherData.Items[i].ForecastTime.ToString("MMMM dd");
+                    dailyForecastTemperatures = new List<int>();
+                    dailyForecastTemperatures.Add(weatherData.Items[i].Main.TemperatureRounded);
+                }
+            }
+
+            return weatherData;
+        }
+
+        WeatherForecastRoot AddDailyForecastsToWeatherForecastRoot(List<int> dailyForecasts, WeatherForecastRoot weatherData, int start, int end)
+        {
+            while (start <= end)
+            {
+                weatherData.Items[start].Main.DailyForecastTemperatures = dailyForecasts;
+                start++;
+            }
+
+            return weatherData;
         }
 
         List<string> ForecastTimeInHours()
@@ -51,35 +88,12 @@ namespace WeatherApp
             var result = weatherData;
             var dateTime = DateTime.Now;
 
-            for (int i = 0; i < weatherData.Items.Count; i++)
+            foreach (var item in result.Items)
             {
-                result.Items[i].Main.DateAndTime = dateTime;
+                item.ForecastTime = dateTime;
                 dateTime = dateTime.AddHours(3);
             }
             return result;
-        }
-
-        List<int> GetDailyTemperatures(WeatherForecastRoot weatherData)
-        {
-            var result = new List<int>();
-
-            for (int i = 0; i < 8; i++)
-            {
-                result.Add(weatherData.Items[i].Main.TemperatureRounded);
-            }
-            result.Sort();
-
-            return result;
-        }
-
-        int GetMinDailyTemperature(List<int> temperatureList)
-        {
-            return temperatureList[0];
-        }
-
-        int GetMaxDailyTemperature(List<int> temperatureList)
-        {
-            return temperatureList[7];
         }
 
         string GenerateRequestUri(string endpoint)

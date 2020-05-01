@@ -250,8 +250,8 @@
                         <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
                         <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
                         <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[7].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[7].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
                     </Grid>
 
                     <Grid BackgroundColor="White">
@@ -268,8 +268,8 @@
                         <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
                         <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
                         <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[15].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[15].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
                     </Grid>
 
                     <Grid BackgroundColor="White">
@@ -286,8 +286,8 @@
                         <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
                         <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
                         <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[23].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[23].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
                     </Grid>
 
                     <Grid BackgroundColor="White">
@@ -304,8 +304,8 @@
                         <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
                         <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
                         <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[31].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[31].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
                     </Grid>
                     </StackLayout>
                 </ScrollView>

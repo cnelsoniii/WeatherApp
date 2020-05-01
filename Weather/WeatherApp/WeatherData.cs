@@ -47,7 +47,7 @@ namespace WeatherApp
         public string DisplayTemp => $"Temp: {Main?.Temperature ?? 0}° {Weather?[0]?.Visibility ?? string.Empty}";
 
         //public Weather LocationWeather { get => Weather[0]; set => Weather[0] = value; }
-
+        public DateTime ForecastTime { get; set; }
         public ImageSource WeatherIcon { get; set; }
     }
 
@@ -88,11 +88,11 @@ namespace WeatherApp
         public double TempMax { get; set; }
 
         public int TemperatureRounded { get => Convert.ToInt32(Temperature); }
-        public int TempMinRounded { get; set; }
-        public int TempMaxRounded { get; set; }
+        public int TempMinRounded { get => DailyForecastTemperatures[0]; }
+        public int TempMaxRounded { get => DailyForecastTemperatures[DailyForecastTemperatures.Count - 1]; }
         public int FeelsLikeRounded { get => Convert.ToInt32(FeelsLike); }
         public List<string> ForecastTimeHours { get; set; }
-        public DateTime DateAndTime { get; set; }
+        public List<int> DailyForecastTemperatures { get; set; }
 
     }
 
