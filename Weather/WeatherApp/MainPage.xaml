@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              xmlns:local="clr-namespace:WeatherApp"
-             x:Class="WeatherApp.MainPage">
+             x:Class="WeatherApp.MainPage"
+             BackgroundImageSource="line.png">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="labelStyle" 
@@ -72,15 +73,17 @@
                     Clicked="OnGetWeatherButtonClicked" />
         </Grid>
 
-        <ScrollView>
+   <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#080808">
+        <Image Source="{local:ImageResource WeatherApp.line.png}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             <StackLayout>
                 <!-- Current Weather-->
-                <StackLayout Padding="10">
+                <StackLayout BackgroundColor="#FF0505">
                     <!--Original Text was Text="{Binding Title}"-->
                     <Label Text="Seattle"
                            FontAttributes="Bold" FontSize="16" TextColor="White" HorizontalOptions="CenterAndExpand" />
 
-                    <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:ddd, MMMM d h:m tt}'}" 
+                    <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dddd  , MMMM d h:m tt}'}" 
                            FontSize="13"  TextColor="Black" HorizontalOptions="CenterAndExpand"/>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
@@ -90,11 +93,7 @@
                     </StackLayout>
                 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                        <Label Text="{Binding Items[0].Main.TempMaxRounded, StringFormat='{0}°'}"
-                               Style="{StaticResource labelResultStyle}"/>
-                        <Label Text="{Binding Items[0].Main.TempMinRounded, StringFormat='/ {0}° Feels like'}"
-                               Style="{StaticResource labelResultStyle}"/>
-                        <Label Text="{Binding Items[0].Main.FeelsLikeRounded, StringFormat='{0}°'}"
+                        <Label Text="{Binding Items[0].Main.FeelsLikeRounded, StringFormat='Feels like {0}°'}"
                                Style="{StaticResource labelResultStyle}"/>
                     </StackLayout>
 
@@ -103,213 +102,55 @@
                 </StackLayout>
 
                 <!--Hourly Forecast-->
-                <ScrollView Orientation="Horizontal">
-                <StackLayout Orientation="Horizontal">
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Items[0].Main.ForecastTimeHours[0]}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Items[1].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                </Grid>
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Items[0].Main.ForecastTimeHours[1]}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Items[2].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
+                <Grid Padding="10, 0, 0, 0">
+                   <Grid.ColumnDefinitions>
+                       <ColumnDefinition Width="Auto"></ColumnDefinition>
+                   </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="3 Hour Forecast" FontFamily="CarbonoFont" BackgroundColor="White" TextColor="Black" />
                 </Grid>
 
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Items[0].Main.ForecastTimeHours[2]}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Items[3].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                </Grid>
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Items[0].Main.ForecastTimeHours[3]}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Items[4].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                </Grid>
-
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Items[0].Main.ForecastTimeHours[4]}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Items[5].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                </Grid>
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Items[0].Main.ForecastTimeHours[5]}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Items[6].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                </Grid>
-
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Items[0].Main.ForecastTimeHours[6]}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Items[7].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                </Grid>
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Items[0].Main.ForecastTimeHours[7]}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                    <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Items[8].Main.TemperatureRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                </Grid>
-                </StackLayout>
-                </ScrollView>
+                <Frame BackgroundColor="#252525">
+                    <CollectionView ItemsSource="{Binding ThreeHourForecast}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Label Text="{Binding ForecastTime, StringFormat='{0:h tt}'}" TextColor="White" HorizontalOptions="Start"/>
+                                    <BoxView Color="White" HorizontalOptions="Start"/>
+                                    <Label Text="{Binding Weather[0].Description}" TextColor="White" HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding Main.TemperatureRounded, StringFormat='{0}°'}" TextColor="White" HorizontalOptions="End"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
 
                 <!--Daily Forecast-->
-                <ScrollView Orientation="Horizontal">
-                    <StackLayout Orientation="Horizontal">
-                    <Grid BackgroundColor="White">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                        <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[0].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[0].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                    </Grid>
+                <Grid Padding="10, 0, 0, 0">
+                   <Grid.ColumnDefinitions>
+                       <ColumnDefinition Width="Auto"></ColumnDefinition>
+                   </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="4 Day Forecast" FontFamily="CarbonoFont" FontSize="18" BackgroundColor="White" TextColor="Black"/>
+                </Grid>
 
-                    <Grid BackgroundColor="White">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                        <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[7].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[7].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                    </Grid>
-
-                    <Grid BackgroundColor="White">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                        <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[15].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[15].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                    </Grid>
-
-                    <Grid BackgroundColor="White">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                        <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[23].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[23].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                    </Grid>
-
-                    <Grid BackgroundColor="White">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="2*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="Today" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="Gray"/>
-                        <Image Grid.Row="1" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Image Grid.Row="2" Grid.Column="0" Source="{local:ImageResource WeatherApp.test.png}" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Items[31].Main.TempMaxRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                        <Label Grid.Row="4" Grid.Column="0" Text="{Binding Items[31].Main.TempMinRounded, StringFormat='{0}°'}" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="Gray"/>
-                    </Grid>
-                    </StackLayout>
-                </ScrollView>
+                <Frame BackgroundColor="#252525" HasShadow="True" >
+                    <CollectionView ItemsSource="{Binding FourDayForecast}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Label Text="{Binding ForecastTime, StringFormat='{0:dddd}'}" HorizontalOptions="Start" TextColor="White"/>
+                                    <BoxView Color="White" HorizontalOptions="Start"/>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                        <Label Text="{Binding Main.TempMinRounded, StringFormat='{0}°'}" TextColor="White"/>
+                                        <Label Text="{Binding Main.TempMaxRounded, StringFormat='/{0}°'}" TextColor="White"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
             </StackLayout>
-        </ScrollView>
+                    </ScrollView>
+    </AbsoluteLayout>
+
     </StackLayout>    
 </ContentPage>

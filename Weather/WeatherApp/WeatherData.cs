@@ -153,6 +153,9 @@ namespace WeatherApp
         public int Cnt { get; set; }
         [JsonProperty("list")]
         public List<WeatherData> Items { get; set; }
+
+        public List<WeatherData> ThreeHourForecast { get; set; }
+        public List<WeatherData> FourDayForecast { get; set; }
     }
 
     public class City

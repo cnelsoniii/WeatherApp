@@ -20,8 +20,15 @@ namespace WeatherApp
             {
                 WeatherForecastRoot weatherData = await _restService.GetWeatherData(GenerateRequestUri(Constants.OpenWeatherMapEndpoint));
                 weatherData.Items[0].Main.ForecastTimeHours = ForecastTimeInHours();
+
+                for (int i = 0; i <= 8; i++)
+                {
+                    weatherData.Items[i].Weather[0].Description = FirstLetterToUpperCase(weatherData.Items[i].Weather[0].Description);
+                }
                 weatherData = SetDateAndTime(weatherData);
                 weatherData = GroupWeatherDataByDate(weatherData);
+                weatherData = GetFourDayForecast(weatherData);
+                weatherData = GetThreeHourForecast(weatherData);
 
                 BindingContext = weatherData;
                 string TestTemp = weatherData.Items[0].Main.TemperatureRounded.ToString();
@@ -29,6 +36,40 @@ namespace WeatherApp
                 //string weather = weatherData.LocationWeather.Visibility;
                 //weatherData.WeatherIcon = WeatherDisplayIcon(weather);
             }
+        }
+
+        WeatherForecastRoot GetThreeHourForecast(WeatherForecastRoot weatherData)
+        {
+            List<WeatherData> tempWeatherData = new List<WeatherData>();
+
+            for (int i = 1; i <= 8; i++)
+            {
+                tempWeatherData.Add(weatherData.Items[i]);
+            }
+
+            weatherData.ThreeHourForecast = tempWeatherData;
+            return weatherData;
+        }
+
+        WeatherForecastRoot GetFourDayForecast(WeatherForecastRoot weatherData)
+        {
+            List<WeatherData> tempWeatherData = new List<WeatherData>();
+            for (int i = 7; i <= 31; i += 8)
+            {
+                tempWeatherData.Add(weatherData.Items[i]);
+            }
+            weatherData.FourDayForecast = tempWeatherData;
+            return weatherData;
+        }
+
+        string FirstLetterToUpperCase(string description)
+        {
+            if (string.IsNullOrEmpty(description))
+                throw new ArgumentException("There is no first letter");
+
+            char[] descriptionArray = description.ToCharArray();
+            descriptionArray[0] = char.ToUpper(descriptionArray[0]);
+            return new string(descriptionArray);
         }
 
         WeatherForecastRoot GroupWeatherDataByDate(WeatherForecastRoot weatherData)

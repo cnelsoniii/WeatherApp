@@ -22,3 +22,4 @@
 /Users/corneliusnelson/Projects/WeatherApp/Weather/WeatherApp/obj/Debug/netstandard2.0/XamlC.stamp
 /Users/corneliusnelson/Projects/WeatherApp/Weather/WeatherApp/obj/Debug/netstandard2.0/WeatherApp.dll
 /Users/corneliusnelson/Projects/WeatherApp/Weather/WeatherApp/obj/Debug/netstandard2.0/WeatherApp.pdb
+/Users/corneliusnelson/Projects/WeatherApp/Weather/WeatherApp/obj/Debug/netstandard2.0/TestPage.xaml.g.cs

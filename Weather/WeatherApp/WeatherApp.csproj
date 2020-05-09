@@ -32,6 +32,7 @@
     <None Remove="test.png" />
     <None Remove="Fonts\College Halo.ttf" />
     <None Remove="Fonts\carbono_pw.ttf" />
+    <None Remove="line.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icons\clear.png" />
@@ -48,5 +49,6 @@
     <EmbeddedResource Include="test.png" />
     <EmbeddedResource Include="Fonts\College Halo.ttf" />
     <EmbeddedResource Include="Fonts\carbono_pw.ttf" />
+    <EmbeddedResource Include="line.png" />
   </ItemGroup>
 </Project>
