@@ -73,9 +73,11 @@
                     Clicked="OnGetWeatherButtonClicked" />
         </Grid>
 
-   <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#080808">
-        <Image Source="{local:ImageResource WeatherApp.line.png}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
-        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+   <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#FF0505">
+       <!--
+       <Image Source="{local:ImageResource WeatherApp.line.png}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
+       -->
+       <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             <StackLayout>
                 <!-- Current Weather-->
                 <StackLayout BackgroundColor="#FF0505">
@@ -109,19 +111,28 @@
                     <Label Grid.Column="0" Text="3 Hour Forecast" FontFamily="CarbonoFont" BackgroundColor="White" TextColor="Black" />
                 </Grid>
 
-                <Frame BackgroundColor="#252525">
-                    <CollectionView ItemsSource="{Binding ThreeHourForecast}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Orientation="Horizontal" Padding="10">
-                                    <Label Text="{Binding ForecastTime, StringFormat='{0:h tt}'}" TextColor="White" HorizontalOptions="Start"/>
-                                    <BoxView Color="White" HorizontalOptions="Start"/>
-                                    <Label Text="{Binding Weather[0].Description}" TextColor="White" HorizontalOptions="CenterAndExpand"/>
-                                    <Label Text="{Binding Main.TemperatureRounded, StringFormat='{0}°'}" TextColor="White" HorizontalOptions="End"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                <Frame BackgroundColor="Black" Margin="10" CornerRadius="0" HasShadow="True">
+                    <ScrollView Orientation="Horizontal" BackgroundColor="Black">
+                    <FlexLayout BackgroundColor="Black" BindableLayout.ItemsSource="{Binding ThreeHourForecast}" Direction="Row" JustifyContent="SpaceEvenly">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="4*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75"/>
+                    </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Text="{Binding ForecastTime, StringFormat='{0:h tt}'}" TextColor="White"/>
+                        <BoxView Grid.Row="1" Color="White"/>
+                        <Label Grid.Row="2" Text="{Binding Main.TemperatureRounded, StringFormat='{0}°'}" TextColor="White"/>
+                    </Grid>
+                                                                    </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                    </ScrollView>
                 </Frame>
 
                 <!--Daily Forecast-->
@@ -132,9 +143,9 @@
                     <Label Grid.Column="0" Text="4 Day Forecast" FontFamily="CarbonoFont" FontSize="18" BackgroundColor="White" TextColor="Black"/>
                 </Grid>
 
-                <Frame BackgroundColor="#252525" HasShadow="True" >
-                    <CollectionView ItemsSource="{Binding FourDayForecast}">
-                        <CollectionView.ItemTemplate>
+                <Frame BackgroundColor="Black" HasShadow="True" Margin="10" CornerRadius="0">
+                    <FlexLayout BindableLayout.ItemsSource="{Binding FourDayForecast}" Direction="Column" JustifyContent="SpaceEvenly">
+                        <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Orientation="Horizontal" Padding="10">
                                     <Label Text="{Binding ForecastTime, StringFormat='{0:dddd}'}" HorizontalOptions="Start" TextColor="White"/>
@@ -145,8 +156,8 @@
                                     </StackLayout>
                                 </StackLayout>
                             </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
                 </Frame>
             </StackLayout>
                     </ScrollView>
